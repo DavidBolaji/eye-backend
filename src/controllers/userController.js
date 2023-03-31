@@ -9,8 +9,7 @@ exports.create = async (req, res) => {
       newData,
       { upsert: true, new: true } // Upsert option creates a new document if it doesn't exist
     );
-
-    res.status(201).send({ id: newUser._id });
+    res.status(201).send({ id: newUser._id, whatEye: newUser.whatEye });
   } catch (e) {
     res.status(400).send({ message: e });
   }
@@ -24,8 +23,7 @@ exports.update = async (req, res) => {
       newData,
       { upsert: true, new: true } // Upsert option creates a new document if it doesn't exist
     );
-
-    res.status(201).send({ id: newUser._id });
+    res.status(201).send({ id: newUser._id, whatEye: newUser.whatEye });
   } catch (e) {
     res.status(400).send({ message: e });
   }
