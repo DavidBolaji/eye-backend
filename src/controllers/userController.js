@@ -63,9 +63,7 @@ exports.stageOne = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const user = await Patient.findById(id).select(
-      "number ethnicity ehnicityO gender travelTime domicile education glucoma glucomaO hadOfGlaucoma relativeWithBlindness"
-    );
+    const user = await Patient.findById(id);
 
     if (!user) {
       throw new Error();
@@ -81,9 +79,7 @@ exports.stageTwo = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const user = await Patient.findById(id).select(
-      "whatEye presentingVisualAcuityL presentingVisualAcuityR causeOfVisionLossL causeOfVisionLossLO causeOfVisionLossR causeOfVisionLossRO cataractPresentL cataractPresentR noOfShotsL noOfShotsR noOfQuadrantsTreatedL noOfQuadrantsTreatedR powerUsedL powerUsedR procedureComplicationL procedureComplicationR IOP1L IOP1R IOP2L IOP2R MIOPL MIOPR IOP1HRL IOP1HRR IOP1DL IOP1DR IOP1ML IOP1MR IOP3ML IOP3MR IOP6ML IOP6MR IOP9ML IOP9MR IOP1YL IOP1YR COM1HRL COM1HRR COM1DL COM1DR COM3ML COM3MR COM6ML COM6MR COM1YL COM1YR CCTL CCTR ocularPainL ocularPainR ganioscopyL ganioscopyR openessOfQuadrantL openessOfQuadrantR opticNerveVisibleL opticNerveVisibleR verticalCupDiskRatioL verticalCupDiskRatioR visualFieldPerformedL visualFieldNotPerformedL visualFieldPerformedR visualFieldNotPerformedR meanDeviationL meanDeviationR patternSDL patternSDR perimeterL perimeterR"
-    );
+    const user = await Patient.findById(id);
 
     if (!user) {
       throw new Error();

@@ -7,6 +7,8 @@ const patientSchema = new mongoose.Schema(
   {
     // Subject Data
     number: { type: Number },
+    statusOfPatient: { type: String }, // medication/naive patient, on medication and hard washout
+    YOFB: { type: String },
     ethnicity: { type: String },
     ehnicityO: { type: String },
     gender: { type: String },
@@ -17,77 +19,372 @@ const patientSchema = new mongoose.Schema(
     glucomaO: { type: String },
     hadOfGlaucoma: { type: String },
     relativeWithBlindness: { type: String },
+    historyOfGlucoma: { type: String },
+    historyOfHYPERTENSION: { type: String },
+    BPSYSTOLIC: { type: String },
+    BPDIASTOLIC: { type: String },
+    historyOfDiabetes: { type: String },
 
     // eye specific info
     whatEye: { type: String },
     presentingVisualAcuityL: { type: String },
     presentingVisualAcuityR: { type: String },
-    causeOfVisionLossL: { type: String },
-    causeOfVisionLossLO: { type: String },
-    causeOfVisionLossR: { type: String },
-    causeOfVisionLossRO: { type: String },
+    bestcorrectedvisualAquityLNaive: { type: String }, //new
+    bestcorrectedvisualAquityLBeforeWashout: { type: String }, //new
+    bestcorrectedvisualAquityLAfterWashout: { type: String }, //new
+    bestcorrectedvisualAquityRNaive: { type: String }, //new
+    bestcorrectedvisualAquityRBeforeWashout: { type: String }, //new
+    bestcorrectedvisualAquityRAfterWshout: { type: String }, //new
+    whatEyeChartWasUsedL: { type: String }, //text
+    whatEyeChartWasUsedR: { type: String }, //text
     cataractPresentL: { type: String },
     cataractPresentR: { type: String },
-    noOfShotsL: { type: Number },
-    noOfShotsR: { type: Number },
-    noOfQuadrantsTreatedL: { type: Number },
-    noOfQuadrantsTreatedR: { type: Number },
-    powerUsedL: { type: Number },
-    powerUsedR: { type: Number },
-    procedureComplicationL: { type: String },
-    procedureComplicationR: { type: String },
-    IOP1L: { type: Number },
-    IOP1R: { type: Number },
-    IOP2L: { type: Number },
-    IOP2R: { type: Number },
-    MIOPL: { type: Number },
-    MIOPR: { type: Number },
-    IOP1HRL: { type: Number },
-    IOP1HRR: { type: Number },
-    IOP1DL: { type: Number },
-    IOP1DR: { type: Number },
-    IOP1ML: { type: Number },
-    IOP1MR: { type: Number },
-    IOP3ML: { type: Number },
-    IOP3MR: { type: Number },
-    IOP6ML: { type: Number },
-    IOP6MR: { type: Number },
-    IOP9ML: { type: Number },
-    IOP9MR: { type: Number },
-    IOP1YL: { type: Number },
-    IOP1YR: { type: Number },
-    COM1HRL: { type: String },
-    COM1HRR: { type: String },
-    COM1DL: { type: String },
-    COM1DR: { type: String },
-    COM3ML: { type: String },
-    COM3MR: { type: String },
-    COM6ML: { type: String },
-    COM6MR: { type: String },
-    COM1YL: { type: String },
-    COM1YR: { type: String },
-    CCTL: { type: Number },
-    CCTR: { type: Number },
-    ocularPainL: { type: String },
-    ocularPainR: { type: String },
     ganioscopyL: { type: String },
     ganioscopyR: { type: String },
     openessOfQuadrantL: { type: String },
     openessOfQuadrantR: { type: String },
-    opticNerveVisibleL: { type: String },
-    opticNerveVisibleR: { type: String },
-    verticalCupDiskRatioL: { type: Number },
-    verticalCupDiskRatioR: { type: Number },
-    visualFieldPerformedL: { type: String },
+    anteriorChemberActivityprioToProcedureL: { type: String }, // new text
+    anteriorChemberActivityprioToProcedureR: { type: String }, // new text
+    CDRL: { type: String },
+    CDRR: { type: String },
+    CVFL: { type: String },
+    CVFR: { type: String },
+    visualFieldPerformedL: { type: String }, // yes, No
+    visualFieldPerformedR: { type: String }, // yes, No
     visualFieldNotPerformedL: { type: String },
-    visualFieldPerformedR: { type: String },
     visualFieldNotPerformedR: { type: String },
-    meanDeviationL: { type: Number },
-    meanDeviationR: { type: Number },
-    patternSDL: { type: Number },
-    patternSDR: { type: Number },
-    perimeterL: { type: Number },
-    perimeterR: { type: Number },
+    visualFieldNotPerformedLO: { type: String },
+    visualFieldNotPerformedRO: { type: String },
+    meanDeviationL: { type: String },
+    meanDeviationR: { type: String },
+    patternSDL: { type: String },
+    patternSDR: { type: String },
+    perimeterL: { type: String },
+    perimeterR: { type: String },
+    // end
+
+    CCTL: { type: String },
+    CCTR: { type: String },
+
+    eyesToBeTreatedL: { type: String }, //dropdown, right, left, both
+    eyesToBeTreatedR: { type: String }, //dropdown, right, left, both
+
+    //change
+    IOP1L: { type: Number }, //IOPPrior
+    IOP1R: { type: Number },
+    IOP2L: { type: Number }, // IOPBEFOREwASHOUT
+    IOP2R: { type: Number },
+    //NEW
+    IOP3L: { type: Number }, // IOPAfterwASHOUT
+    IOP3R: { type: Number },
+
+    //new
+    IOP4L: { type: Number }, // IOPAtRecruitment
+    IOP4R: { type: Number },
+    //nEW Position
+    // interoccular pressre before procedure(Ihr before)
+    IOP1HRL: { type: Number },
+    IOP1HRR: { type: Number },
+
+    BIOP: { type: Number },
+    BIOPR: { type: Number },
+    howmanymililetreofwaterwasgiven: { type: Number }, // new
+    howmanymililetreofwaterwasgivenR: { type: Number }, // new
+    iop5minL: { type: Number }, //number
+    iop5minR: { type: Number }, //number
+    iop15MinL: { type: Number },
+    iop15MinR: { type: Number },
+    iop30minL: { type: Number },
+    iop30minR: { type: Number },
+    iop1HRL: { type: Number },
+    iop1HRR: { type: Number },
+    averageEnergyForProcedureL: { type: Number }, //Number
+    averageEnergyForProcedureR: { type: Number }, //Number
+
+    noOfShotsL: { type: Number },
+    noOfShotsR: { type: Number },
+    powerUsedL: { type: Number },
+    powerUsedR: { type: Number },
+    noOfQuadrantsTreatedL: { type: Number },
+    noOfQuadrantsTreatedR: { type: Number },
+    procedureComplicationL: { type: String },
+    procedureComplicationR: { type: String },
+
+    ocularPainL: { type: String },
+    ocularPainR: { type: String },
+
+    // if yes show scale
+    pain1hrL: { type: Number },
+    pain1hrR: { type: Number },
+    pain24hrL: { type: Number },
+    pain24hrR: { type: Number },
+    pain48hrL: { type: Number },
+    pain48hrR: { type: Number },
+
+    medicationsBeforeL: { type: Array },
+    medicationsBeforeR: { type: Array },
+    //   hobbies: [],
+    vaUnaided1HRL: { type: String },
+    vaUnaided1HRR: { type: String },
+
+    bcVA1HRL: { type: String },
+    bcVA1HRR: { type: String },
+
+    flare1HRL: { type: String },
+    flare1HRR: { type: String },
+
+    cells1HRL: { type: String },
+    cells1HRR: { type: String },
+
+    LOCSG1HRR: { type: String },
+    LOCSG1HRL: { type: String },
+
+    IOPA1HRL: { type: Number },
+    IOPA1HRR: { type: Number },
+
+    comp1HRL: { type: String },
+    comp1HRR: { type: String },
+
+    BV1HRL: { type: String },
+    BV1HRR: { type: String },
+
+    //48HR
+    vaUnaided48HRL: { type: String },
+    vaUnaided48HRR: { type: String },
+
+    bcVA48HRL: { type: String },
+    bcVA48HRR: { type: String },
+
+    flare48HRL: { type: String },
+    flare48HRR: { type: String },
+
+    cells48HRL: { type: String },
+    cells48HRR: { type: String },
+
+    LOCSG48HRR: { type: String },
+    LOCSG48HRL: { type: String },
+
+    IOPA48HRL: { type: Number },
+    IOPA48HRR: { type: Number },
+
+    comp48HRL: { type: String },
+    comp48HRR: { type: String },
+
+    //1WEEK
+    vaUnaided1WL: { type: String },
+    vaUnaided1WR: { type: String },
+
+    bcVA1WL: { type: String },
+    bcVA1WR: { type: String },
+
+    flare1WL: { type: String },
+    flare1WR: { type: String },
+
+    cells1WL: { type: String },
+    cells1WR: { type: String },
+
+    LOCSG1WR: { type: String },
+    LOCSG1WL: { type: String },
+
+    IOPA1WL: { type: Number },
+    IOPA1WR: { type: Number },
+
+    comp1WL: { type: String },
+    comp1WR: { type: String },
+
+    //1MONTH
+    vaUnaided1ML: { type: String },
+    vaUnaided1MR: { type: String },
+
+    bcVA1ML: { type: String },
+    bcVA1MR: { type: String },
+
+    flare1ML: { type: String },
+    flare1MR: { type: String },
+
+    cells1ML: { type: String },
+    cells1MR: { type: String },
+
+    LOCSG1MR: { type: String },
+    LOCSG1ML: { type: String },
+
+    IOPA1ML: { type: Number },
+    IOPA1MR: { type: Number },
+
+    comp1ML: { type: String },
+    comp1MR: { type: String },
+
+    //2MONTH
+    vaUnaided2ML: { type: String },
+    vaUnaided2MR: { type: String },
+
+    bcVA2ML: { type: String },
+    bcVA2MR: { type: String },
+
+    flare2ML: { type: String },
+    flare2MR: { type: String },
+
+    cells2ML: { type: String },
+    cells2MR: { type: String },
+
+    LOCSG2MR: { type: String },
+    LOCSG2ML: { type: String },
+
+    IOPA2ML: { type: String },
+    IOPA2MR: { type: String },
+
+    PAS2ML: { type: String },
+    PAS2MR: { type: String },
+
+    pigment2ML: { type: String },
+    pigment2MR: { type: String },
+
+    pigmentO2ML: { type: String },
+    pigmentO2MR: { type: String },
+
+    SLT2ML: { type: String },
+    SLT2MR: { type: String },
+
+    BIOP2ML: { type: Number },
+    BIOPR2MR: { type: Number },
+    howmanymililetreofwaterwasgiven2ML: { type: Number }, // new
+    howmanymililetreofwaterwasgivenR2MR: { type: Number }, // new
+    iop5minL2ML: { type: Number }, //number
+    iop5minR2MR: { type: Number }, //number
+    iop15MinL2ML: { type: Number },
+    iop15MinR2MR: { type: Number },
+    iop30minL2ML: { type: Number },
+    iop30minR2MR: { type: Number },
+    iop1HRL2ML: { type: Number },
+    iop1HRR2MR: { type: Number },
+
+    //3MONTH
+    vaUnaided3ML: { type: String },
+    vaUnaided3MR: { type: String },
+
+    bcVA3ML: { type: String },
+    bcVA3MR: { type: String },
+
+    flare3ML: { type: String },
+    flare3MR: { type: String },
+
+    cells3ML: { type: String },
+    cells3MR: { type: String },
+
+    LOCSG3MR: { type: String },
+    LOCSG3ML: { type: String },
+
+    IOPA3ML: { type: Number },
+    IOPA3MR: { type: Number },
+
+    PAS3ML: { type: String },
+    PAS3MR: { type: String },
+
+    pigment3ML: { type: String },
+    pigment3MR: { type: String },
+
+    pigmentO3ML: { type: String },
+    pigmentO3MR: { type: String },
+
+    SLT3ML: { type: String },
+    SLT3MR: { type: String },
+
+    //6MONTH
+    vaUnaided6ML: { type: String },
+    vaUnaided6MR: { type: String },
+
+    bcVA6ML: { type: String },
+    bcVA6MR: { type: String },
+
+    flare6ML: { type: String },
+    flare6MR: { type: String },
+
+    cells6ML: { type: String },
+    cells6MR: { type: String },
+
+    LOCSG6MR: { type: String },
+    LOCSG6ML: { type: String },
+
+    IOPA6ML: { type: Number },
+    IOPA6MR: { type: Number },
+
+    PAS6ML: { type: String },
+    PAS6MR: { type: String },
+
+    pigment6ML: { type: String },
+    pigment6MR: { type: String },
+
+    pigmentO6ML: { type: String },
+    pigmentO6MR: { type: String },
+
+    SLT6ML: { type: String },
+    SLT6MR: { type: String },
+
+    CVFMD6ML: { type: Number },
+    CVFMD6MR: { type: Number },
+
+    PCVF6ML: { type: String },
+    PCVF6MR: { type: String },
+
+    CVFO6ML: { type: String },
+    CVFO6MR: { type: String },
+
+    CVFOO6ML: { type: String },
+    CVFOO6MR: { type: String },
+
+    //9 month
+    vaUnaided9ML: { type: String },
+    vaUnaided9MR: { type: String },
+
+    bcVA9ML: { type: String },
+    bcVA9MR: { type: String },
+
+    flare9ML: { type: String },
+    flare9MR: { type: String },
+
+    cells9ML: { type: String },
+    cells9MR: { type: String },
+
+    LOCSG9MR: { type: String },
+    LOCSG9ML: { type: String },
+
+    IOPA9ML: { type: Number },
+    IOPA9MR: { type: Number },
+
+    // 12 MONTH
+
+    vaUnaided12ML: { type: String },
+    vaUnaided12MR: { type: String },
+
+    bcVA12ML: { type: String },
+    bcVA12MR: { type: String },
+
+    flare12ML: { type: String },
+    flare12MR: { type: String },
+
+    cells12ML: { type: String },
+    cells12MR: { type: String },
+
+    LOCSG12MR: { type: String },
+    LOCSG12ML: { type: String },
+
+    IOPA12ML: { type: Number },
+    IOPA12MR: { type: Number },
+
+    CVFMD12ML: { type: Number },
+    CVFMD12MR: { type: Number },
+
+    PCVF12ML: { type: String },
+    PCVF12MR: { type: String },
+
+    CVFO12ML: { type: String },
+    CVFO12MR: { type: String },
+
+    CVFOO12ML: { type: String },
+    CVFOO12MR: { type: String },
+
+    CVFPS12ML: { type: Number },
+    CVFPS12MR: { type: Number },
 
     // New treatment
     wasTreatmentAddedL: { type: String },
@@ -111,24 +408,26 @@ const patientSchema = new mongoose.Schema(
     iop3MonthsAfterRepeatSLTR: { type: Number },
     iopAfter6MonthsAfterRepeatSLTL: { type: Number },
     iopAfter6MonthsAfterRepeatSLTR: { type: Number },
+    iopAfter12MonthsAfterRepeatSLTL: { type: Number },
+    iopAfter12MonthsAfterRepeatSLTR: { type: Number },
     complicationsAfterSLTL: { type: String },
     complicationsAfterSLTR: { type: String },
 
     // Treatment Failed
-    treatmentOfferedL: { type: String },
-    treatmentOfferedR: { type: String },
-    treatmentAcceptedL: { type: String },
-    treatmentAcceptedR: { type: String },
-    reasonForNoTreatmentL: { type: String },
-    reasonForNoTreatmentR: { type: String },
-    reasonForNoTreatmentLO: { type: String },
-    reasonForNoTreatmentRO: { type: String },
-    alternateTherapyOfferedL: { type: String },
-    alternateTherapyOfferedR: { type: String },
-    typeOfAlternateTherapyL: { type: String },
-    typeOfAlternateTherapyR: { type: String },
-    alternateTherapyAcceptedL: { type: String },
-    alternateTherapyAcceptedR: { type: String },
+    // treatmentOfferedL: { type: String },
+    // treatmentOfferedR: { type: String },
+    // treatmentAcceptedL: { type: String },
+    // treatmentAcceptedR: { type: String },
+    // reasonForNoTreatmentL: { type: String },
+    // reasonForNoTreatmentR: { type: String },
+    // reasonForNoTreatmentLO: { type: String },
+    // reasonForNoTreatmentRO: { type: String },
+    // alternateTherapyOfferedL: { type: String },
+    // alternateTherapyOfferedR: { type: String },
+    // typeOfAlternateTherapyL: { type: String },
+    // typeOfAlternateTherapyR: { type: String },
+    // alternateTherapyAcceptedL: { type: String },
+    // alternateTherapyAcceptedR: { type: String },
   },
   {
     timestamps: true,
