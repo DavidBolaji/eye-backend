@@ -45,8 +45,6 @@ const patientSchema = new mongoose.Schema(
     openessOfQuadrantR: { type: String },
     anteriorChemberActivityprioToProcedureL: { type: String }, // new text
     anteriorChemberActivityprioToProcedureR: { type: String }, // new text
-    CDRL: { type: String },
-    CDRR: { type: String },
     VCDRL: { type: String },
     VCDRR: { type: String },
     HCDRL: { type: String },
