@@ -29,6 +29,22 @@ exports.update = async (req, res) => {
   }
 };
 
+exports.delete = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deleteUser = await Patient.deleteOne({ _id: { $eq: id } });
+
+    if (!deleteUser) {
+      throw new Error("Unable to delete User");
+    }
+
+    res.status(200).send({ message: "User deleted Successfully" });
+  } catch (e) {
+    res.status(400).send({ e: "Unable to delete User" });
+  }
+};
+
 exports.getUsers = async (req, res) => {
   const { page = 1, limit = 10, sort = "createdAt", search = "" } = req.query;
 

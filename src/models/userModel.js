@@ -39,14 +39,18 @@ const patientSchema = new mongoose.Schema(
     whatEyeChartWasUsedR: { type: String }, //text
     cataractPresentL: { type: String },
     cataractPresentR: { type: String },
-    ganioscopyL: { type: String },
-    ganioscopyR: { type: String },
+    GonioscopyL: { type: String },
+    GonioscopyR: { type: String },
     openessOfQuadrantL: { type: String },
     openessOfQuadrantR: { type: String },
     anteriorChemberActivityprioToProcedureL: { type: String }, // new text
     anteriorChemberActivityprioToProcedureR: { type: String }, // new text
     CDRL: { type: String },
     CDRR: { type: String },
+    VCDRL: { type: String },
+    VCDRR: { type: String },
+    HCDRL: { type: String },
+    HCDRR: { type: String },
     CVFL: { type: String },
     CVFR: { type: String },
     visualFieldPerformedL: { type: String }, // yes, No
@@ -148,27 +152,27 @@ const patientSchema = new mongoose.Schema(
     BV1HRL: { type: String },
     BV1HRR: { type: String },
 
-    //48HR
-    vaUnaided48HRL: { type: String },
-    vaUnaided48HRR: { type: String },
+    //24HR
+    vaUnaided24HRL: { type: String },
+    vaUnaided24HRR: { type: String },
 
-    bcVA48HRL: { type: String },
-    bcVA48HRR: { type: String },
+    bcVA24HRL: { type: String },
+    bcVA24HRR: { type: String },
 
-    flare48HRL: { type: String },
-    flare48HRR: { type: String },
+    flare24HRL: { type: String },
+    flare24HRR: { type: String },
 
-    cells48HRL: { type: String },
-    cells48HRR: { type: String },
+    cells24HRL: { type: String },
+    cells24HRR: { type: String },
 
-    LOCSG48HRR: { type: String },
-    LOCSG48HRL: { type: String },
+    LOCSG24HRR: { type: String },
+    LOCSG24HRL: { type: String },
 
-    IOPA48HRL: { type: Number },
-    IOPA48HRR: { type: Number },
+    IOPA24HRL: { type: Number },
+    IOPA24HRR: { type: Number },
 
-    comp48HRL: { type: String },
-    comp48HRR: { type: String },
+    comp24HRL: { type: String },
+    comp24HRR: { type: String },
 
     //1WEEK
     vaUnaided1WL: { type: String },
