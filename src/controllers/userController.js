@@ -33,7 +33,7 @@ exports.delete = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const deleteUser = await Patient.deleteOne({ _id: { $eq: id } });
+    const deleteUser = await Patient.deleteOne({ _id: { $eq: id } }); //
 
     if (!deleteUser) {
       throw new Error("Unable to delete User");
