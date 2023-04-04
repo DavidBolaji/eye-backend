@@ -11,6 +11,7 @@ exports.create = async (req, res) => {
     );
     res.status(201).send({ id: newUser._id, whatEye: newUser.whatEye });
   } catch (e) {
+    console.log(e);
     res.status(400).send({ message: e });
   }
 };
@@ -25,6 +26,7 @@ exports.update = async (req, res) => {
     );
     res.status(201).send({ id: newUser._id, whatEye: newUser.whatEye });
   } catch (e) {
+    console.log(e);
     res.status(400).send({ message: e });
   }
 };
