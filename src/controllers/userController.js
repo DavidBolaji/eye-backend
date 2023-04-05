@@ -42,7 +42,6 @@ exports.update = async (req, res) => {
     );
     res.status(201).send({ id: newUser._id, whatEye: newUser.whatEye });
   } catch (e) {
-    console.log("error updating");
     console.log(e);
     res.status(400).send({ message: e });
   }
@@ -89,7 +88,6 @@ exports.getUsers = async (req, res) => {
     const users = await Patient.find({});
     res.json(users);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 };

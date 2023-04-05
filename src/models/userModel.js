@@ -24,6 +24,8 @@ const patientSchema = new mongoose.Schema(
     BPSYSTOLIC: { type: String },
     BPDIASTOLIC: { type: String },
     historyOfDiabetes: { type: String },
+    weight: { type: Number },
+    height: { type: Number },
 
     // eye specific info
     whatEye: { type: String },
@@ -98,6 +100,8 @@ const patientSchema = new mongoose.Schema(
     iop15MinR: { type: Number },
     iop30minL: { type: Number },
     iop30minR: { type: Number },
+    iop45minR: { type: Number },
+    iop45minL: { type: Number },
     iop1HRL: { type: Number },
     iop1HRR: { type: Number },
     averageEnergyForProcedureL: { type: Number }, //Number
@@ -235,6 +239,12 @@ const patientSchema = new mongoose.Schema(
     IOPA2ML: { type: String },
     IOPA2MR: { type: String },
 
+    Gonioscopy2ML: { type: String },
+    Gonioscopy2MR: { type: String },
+
+    openessOfQuadrant2MR: { type: String },
+    openessOfQuadrant2ML: { type: String },
+
     PAS2ML: { type: String },
     PAS2MR: { type: String },
 
@@ -279,6 +289,12 @@ const patientSchema = new mongoose.Schema(
     IOPA3ML: { type: Number },
     IOPA3MR: { type: Number },
 
+    Gonioscopy3ML: { type: String },
+    Gonioscopy3MR: { type: String },
+
+    openessOfQuadrant3MR: { type: String },
+    openessOfQuadrant3ML: { type: String },
+
     PAS3ML: { type: String },
     PAS3MR: { type: String },
 
@@ -309,6 +325,12 @@ const patientSchema = new mongoose.Schema(
 
     IOPA6ML: { type: Number },
     IOPA6MR: { type: Number },
+
+    Gonioscopy6ML: { type: String },
+    Gonioscopy6MR: { type: String },
+
+    openessOfQuadrant6MR: { type: String },
+    openessOfQuadrant6ML: { type: String },
 
     PAS6ML: { type: String },
     PAS6MR: { type: String },
