@@ -1,8 +1,22 @@
 const Patient = require("../models/userModel");
 
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    if (email !== process.env.EMAIL)
+      throw new Error("Please enter a valid email address");
+    if (password !== process.env.PASSWORD)
+      throw new Error("Please enter a valid password");
+
+    res.status(200).send({ isLogin: true });
+  } catch (e) {
+    res.status(400).send({ message: e });
+  }
+};
+
 exports.create = async (req, res) => {
   const newData = { ...req.body };
-  console.log("entered create");
+
   try {
     const newUser = await Patient.findOneAndUpdate(
       { number: req.body.number },
@@ -10,11 +24,8 @@ exports.create = async (req, res) => {
       { upsert: true, new: true } // Upsert option creates a new document if it doesn't exist
     );
 
-    console.log("finished adding");
     res.status(201).send({ id: newUser._id, whatEye: newUser.whatEye });
-    console.log("no error");
   } catch (e) {
-    console.log("error create");
     console.log(e);
     res.status(400).send({ message: e });
   }
@@ -22,16 +33,14 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
   const newData = { ...req.body };
-  console.log("entered update");
+
   try {
     const newUser = await Patient.findOneAndUpdate(
       { _id: req.body._id },
       newData,
       { upsert: true, new: true } // Upsert option creates a new document if it doesn't exist
     );
-    console.log("finished updating");
     res.status(201).send({ id: newUser._id, whatEye: newUser.whatEye });
-    console.log("no error updating");
   } catch (e) {
     console.log("error updating");
     console.log(e);

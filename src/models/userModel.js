@@ -90,8 +90,8 @@ const patientSchema = new mongoose.Schema(
 
     BIOP: { type: Number },
     BIOPR: { type: Number },
-    howmanymililetreofwaterwasgiven: { type: Number }, // new
-    howmanymililetreofwaterwasgivenR: { type: Number }, // new
+    howmanymililitreofwaterwasgiven: { type: Number }, // new
+    howmanymililitreofwaterwasgivenR: { type: Number }, // new
     iop5minL: { type: Number }, //number
     iop5minR: { type: Number }, //number
     iop15MinL: { type: Number },
@@ -249,8 +249,8 @@ const patientSchema = new mongoose.Schema(
 
     BIOP2ML: { type: Number },
     BIOPR2MR: { type: Number },
-    howmanymililetreofwaterwasgiven2ML: { type: Number }, // new
-    howmanymililetreofwaterwasgivenR2MR: { type: Number }, // new
+    howmanymililitreofwaterwasgiven2ML: { type: Number }, // new
+    howmanymililitreofwaterwasgivenR2MR: { type: Number }, // new
     iop5minL2ML: { type: Number }, //number
     iop5minR2MR: { type: Number }, //number
     iop15MinL2ML: { type: Number },

@@ -15,5 +15,6 @@ router.get("/user/stageFour/:id", userController.stageFour);
 router.post("/user/create", userController.create);
 router.post("/user/update", userController.update);
 router.post("/user/delete/:id", userController.delete);
+router.post("/user/login", userController.login);
 
 module.exports = router;
