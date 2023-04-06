@@ -267,6 +267,8 @@ const patientSchema = new mongoose.Schema(
     iop15MinR2MR: { type: Number },
     iop30minL2ML: { type: Number },
     iop30minR2MR: { type: Number },
+    iop45minL2ML: { type: Number },
+    iop45minR2MR: { type: Number },
     iop1HRL2ML: { type: Number },
     iop1HRR2MR: { type: Number },
 
