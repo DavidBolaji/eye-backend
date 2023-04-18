@@ -64,7 +64,7 @@ exports.delete = async (req, res) => {
 };
 
 exports.getUsers = async (req, res) => {
-  const { page = 1, limit = 10, sort = "createdAt", search = "" } = req.query;
+  const { page = 1, limit = 10, sort = "number", search = "" } = req.query;
 
   const options = {
     page: parseInt(page, 10),
@@ -85,7 +85,8 @@ exports.getUsers = async (req, res) => {
   };
 
   try {
-    const users = await Patient.find({});
+    const users = await Patient.find({}).sort({ number: 1 });
+    console.log(users);
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: "Server error" });
