@@ -86,7 +86,6 @@ exports.getUsers = async (req, res) => {
 
   try {
     const users = await Patient.find({}).sort({ number: 1 });
-    console.log(users);
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: "Server error" });

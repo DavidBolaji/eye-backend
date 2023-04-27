@@ -113,6 +113,20 @@ const patientSchema = new mongoose.Schema(
     powerUsedR: { type: Number },
     noOfQuadrantsTreatedL: { type: Number },
     noOfQuadrantsTreatedR: { type: Number },
+    pigmentationSuperiorL: { type: String },
+    pigmentationSuperiorR: { type: String },
+
+    LOCSG2R: { type: String },
+    LOCSG2L: { type: String },
+
+    pigmentationInferiorL: { type: String },
+    pigmentationInferiorR: { type: String },
+
+    pigmentationNasalL: { type: String },
+    pigmentationNasalR: { type: String },
+
+    pigmentationTemporalL: { type: String },
+    pigmentationTemporalR: { type: String },
     procedureComplicationL: { type: String },
     procedureComplicationR: { type: String },
 
