@@ -107,6 +107,9 @@ const patientSchema = new mongoose.Schema(
     averageEnergyForProcedureL: { type: Number }, //Number
     averageEnergyForProcedureR: { type: Number }, //Number
 
+    energyUseRangeL:{ type: String },
+    energyUseRangeR:{ type: String },
+
     noOfShotsL: { type: Number },
     noOfShotsR: { type: Number },
     powerUsedL: { type: Number },
